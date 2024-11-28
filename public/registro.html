@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stilos/style.css">
+    <title>Registro</title>
+</head>
+<body>
+    <form action="/regUsuario" method="post">
+        <div class="container">
+            <h2>Sesion</h2>
+          <form action="regUsuario" method="post">
+            <div class="form-group">
+                <label for="ide">Identificacion:</label>
+                <input type="number" id="ide" name="ide" required>
+            </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="ape" name="ape" required>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label for="genero">Género:</label>
+                        <select name="genero" name="genero" id="genero" class="selectClass">
+                            <option value="m">Masculino</option>
+                            <option value="f">Femenino</option>
+                        </select>
+                    </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha de Nacimiento:</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+                <div class="form-group">
+                    <label for="tel">Telefono:</label>
+                    <input type="number" id="tel" name="tel" required>
+                </div>
+                <div class="form-group">
+                    <label for="dire">Direccion:</label>
+                    <input type="text" id="dire" name="dire" required>
+                </div>
+                <div class="form-group">
+                    <label for="localidad">Localidad:</label>
+                    <input type="text" id="localidad" name="localidad" required>
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo" required>
+                </div>
+                <div class="form-group">
+                    <label for="contra">Contraseña:</label>
+                    <input type="password" id="contra" name="contra" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Registrarse</button>
+                </div>
+            </form>
+        </div>
+    </form>
+</body>
+</html>
