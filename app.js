@@ -2,7 +2,7 @@
 const express = require('express')
 const app = express()
 const session = require('express-session')
-
+ 
 //configuraciones
 app.set("view engine","ejs")
 app.use(express.json())

@@ -25,8 +25,8 @@ router.post("/regUsuario", async function(req, res){
 
         conexion.query(insertar, [ide,nom,ape,genero,fecha,tel,dire,localidad,correo, hashedPas],function(err){
             if (err) {
-                console.log("Error al intentar registrar el USUARIO");
-                return res.status(500).send("Error al registrar Usuario")
+                console.log("Error al intentar registrar el USUARIO", err);
+                return res.status(500).send("Error al registrar Usuario", err)
             } else {
                 console.log("Resigro Hecho");
                 let mensaje = "Registro Hecho, Inicia Sesion"
