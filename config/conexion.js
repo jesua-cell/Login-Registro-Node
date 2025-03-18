@@ -1,12 +1,25 @@
-let conectar = require('mysql')
-let conexion = conectar.createConnection({
-    host:"localhost",
-    database:"login",
-    user:"root",
-    password:""
+// let conectar = require('mysql')
+const { createPool } = require('mysql2')
+
+//Variables de Entorno:
+const {
+        DB_HOST, 
+        DB_PASSWORD, 
+        DB_USER, 
+        DB_NAME 
+    } = require('./variableEntorno.js')
+
+//Prpiedades de la conexion a la BD:
+//Tener Multiples conexiones:
+const conexion = createPool({
+    host: DB_HOST,
+    database: DB_NAME,
+    user: DB_USER,
+    password: DB_PASSWORD
 })
 
-conexion.connect(function(error){
+//Funcion de respuesta al hacer la conexion:
+conexion.getConnection(function (error) {
     if (error) {
         throw error
     } else {

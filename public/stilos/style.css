@@ -12,6 +12,7 @@ p{
 .container {
     width: 400px;
     margin: auto;
+    margin-bottom: 100px;
     padding: 20px;
     border: 0px solid #f8f8f8;
     color: #2f3132;
@@ -63,6 +64,12 @@ p{
     width: 200px;  
     height: 40px;    
     border-radius: 10px;
+    opacity: 0.5;
+    margin-bottom: 8px;
+}
+
+.selectClass option{
+    opacity: 0.5;
 }
 
 /* Tienda */
