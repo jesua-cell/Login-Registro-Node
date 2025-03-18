@@ -2,7 +2,7 @@
   "name": "login-node",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
+  "scripts": { 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +15,10 @@
     "express": "^4.21.0",
     "express-session": "^1.18.0",
     "mysql": "^2.18.1",
+    "mysql2": "^3.13.0",
     "node": "^22.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }
