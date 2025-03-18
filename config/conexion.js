@@ -5,7 +5,11 @@ const { createPool } = require('mysql2')
 const {
         DB_HOST, 
         DB_PASSWORD, 
+<<<<<<< HEAD
         DB_USER,  
+=======
+        DB_USER, 
+>>>>>>> a62436c767e16872ec4242a2ce08e41320f4e21d
         DB_NAME 
     } = require('./variableEntorno.js')
 
