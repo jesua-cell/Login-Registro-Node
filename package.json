@@ -2,7 +2,7 @@
   "name": "login-node",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": { 
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
@@ -12,12 +12,15 @@
   "description": "",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "connect-redis": "^8.0.2",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
     "express-session": "^1.18.0",
+    "ioredis": "^5.6.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.13.0",
-    "node": "^22.9.0"
+    "node": "^22.9.0",
+    "redis": "^4.7.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
