@@ -3,14 +3,15 @@ const express = require('express');
 const session = require('express-session');
 const Redis = require('ioredis');
 const { RedisStore } = require('connect-redis');
+const { REDIS_HOST, REDIS_PORT } = require('./config/variableEntorno.js')
 
 const app = express();
 
 //Cliente de Redis
 
 const redisClient = new Redis({
-    host: 'localhost',
-    port: 6379,
+    host: REDIS_HOST,
+    port: REDIS_PORT,
 })
 
 //Almcanemiento de sesiones de redis con connect-redis:
