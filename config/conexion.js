@@ -23,7 +23,7 @@ const conexion = createPool({
 //Funcion de respuesta al hacer la conexion:
 conexion.getConnection(function (error) {
     if (error) {
-        throw error
+        console.log("Error en la conexion", error)
     } else {
         console.log("--- CONECTADO ---");
     }
