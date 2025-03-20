@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const link = require('../config/link')
 const conexion = require('../config/conexion')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 
 //DISEÑO DE LA RUTA
 router.post("/codLogin", function(req, res){

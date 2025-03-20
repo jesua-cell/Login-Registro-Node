@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const  link  = require("../config/link.js")
 const conexion = require("../config/conexion")
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const saltRounds = 10
 
 router.post("/regUsuario", async function(req, res){
