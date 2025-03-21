@@ -7,19 +7,28 @@ const { REDIS_URL } = require('./config/variableEntorno.js')
 
 const app = express();
 
+//Configuracion del cliente de Redis:
+
+const redisOption = process.env.NODE_ENV === "production" 
+  ? { 
+      tls: { 
+        rejectUnauthorized: false 
+      } 
+    } 
+  : {};
+
 //Cliente de Redis
 
-const redisClient = new Redis(process.env.REDIS_URL, {
-    enableCompileCache: false,
-    maxRetriesPerRequest: null
-})
+const redisClient = new Redis(REDIS_URL, redisOption);
+
+console.log(REDIS_URL);
 
 //Almcanemiento de sesiones de redis con connect-redis:
 
 const redisStore = new RedisStore({
     client: redisClient,
-    prefix:"session:",
-    disableTouch:true
+    prefix: "session:",
+    disableTouch: true
 });
 
 //Manejo de sision, express-sesion para usarlo con redis:
@@ -30,11 +39,16 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: false,
+        secure: process.env.NODE_ENV === "production",
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24,
     }
 }))
+
+// Conexxion en Redis:
+redisClient.on("connect", () => {
+    console.log("Conectado a Redis en: ",REDIS_URL);
+})
 
 //Manerjo de errores:
 redisClient.on('error', (err) => {
