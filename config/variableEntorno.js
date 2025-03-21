@@ -5,10 +5,10 @@ const DB_NAME = process.env.MYSQLDATABASE || "login"
 const DB_USER = process.env.MYSQLUSER || "root"
 const DB_PASSWORD = process.env.MYSQLPASSWORD || "" 
 
-const REDIS_HOST = process.env.REDISHOST || "127.0.0.1"
-const REDIS_PORT = process.env.REDISPORT || 6379
+const REDISHOST = process.env.REDISHOST || "127.0.0.1"
+const REDISPORT = process.env.REDISPORT || 6379
 const REDISPASSWORD = process.env.REDISPASSWORD || ''
-const REDIS_URL = process.env.REDIS_URL || `redis://:${REDISPASSWORD}@${REDIS_HOST}:${REDIS_PORT}`
+const REDIS_URL = process.env.REDIS_URL || `redis://:${REDISPASSWORD}@${REDISHOST}:${REDISPORT}`
 
 module.exports = {
     //mySql
@@ -20,7 +20,7 @@ module.exports = {
     DB_NAME,
 
     //Redis
-    REDIS_HOST,
-    REDIS_PORT,
+    REDISHOST,
+    REDISPORT,
     REDIS_URL
 }
