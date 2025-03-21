@@ -4,6 +4,9 @@ const DB_PORT = process.env.MYSQLPORT || 3306
 const DB_NAME = process.env.MYSQLDATABASE || "login"
 const DB_USER = process.env.MYSQLUSER || "root"
 const DB_PASSWORD = process.env.MYSQLPASSWORD || ""
+const MYSQL_URL = process.env.MYSQL_URL || `mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
+
+//mysql://root:ehzPDjWdOvcvwNUTFveMTUuqpBGPCwTH@mysql.railway.internal:3306/railway
 
 // const REDISHOST = process.env.REDISHOST || "127.0.0.1"
 // const REDISPORT = process.env.REDISPORT || 6379
@@ -32,6 +35,7 @@ module.exports = {
     DB_USER,
     DB_PASSWORD,
     DB_NAME,
+    MYSQL_URL,
 
     //Redis
     REDIS_URL

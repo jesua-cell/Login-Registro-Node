@@ -3,9 +3,40 @@ const express = require('express');
 const session = require('express-session');
 const Redis = require('ioredis');
 const { RedisStore } = require('connect-redis');
-const { REDIS_URL } = require('./config/variableEntorno.js')
+const { REDIS_URL, DB_HOST, DB_USER, DB_PASSWORD, DB_PORT, MYSQL_URL, DB_NAME } = require('./config/variableEntorno.js')
+const mysql = require("mysql2/promise")
 
 const app = express();
+
+//Configuracion de la BD de Mysql:
+
+async function connectMySQL() {
+    try {
+        const connection = await mysql.createConnection(MYSQL_URL)
+        console.log("Conectado a MySql", DB_HOST);
+        return connection
+    } catch (error) {
+        console.error("Error en la conexion de MySql", error)
+    }
+}
+
+connectMySQL()
+
+//Crear la BD automaticamente:
+async function createDataBase() {
+    const tempConnection = await mysql.createConnection({
+        host: DB_HOST,
+        user: DB_USER,
+        password: DB_PASSWORD,
+        port: DB_PORT
+    })
+
+    await tempConnection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`)
+    console.log(`BD ${DB_NAME} creada`);
+    await tempConnection.end()
+}
+
+createDataBase().then(connectMySQL)
 
 //Configuracion del cliente de Redis:
 
@@ -41,6 +72,7 @@ app.use(session({
     cookie: {
         secure: process.env.NODE_ENV === "production",
         httpOnly: true,
+        sameSite: "lax",
         maxAge: 1000 * 60 * 60 * 24,
     }
 }))
@@ -59,6 +91,7 @@ redisClient.on('error', (err) => {
 
 const { PORT } = require('./config/variableEntorno.js');
 const { enableCompileCache } = require('module');
+const { use } = require('./rutas/index');
 
 //configuraciones
 app.set("view engine", "ejs")
