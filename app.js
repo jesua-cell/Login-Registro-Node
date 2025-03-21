@@ -9,11 +9,18 @@ const app = express();
 
 //Cliente de Redis
 
-const redisClient = new Redis(REDIS_URL)
+const redisClient = new Redis(REDIS_URL, {
+    enableCompileCache: false,
+    maxRetriesPerRequest: null
+})
 
 //Almcanemiento de sesiones de redis con connect-redis:
 
-const redisStore = new RedisStore({ client: redisClient });
+const redisStore = new RedisStore({
+    client: redisClient,
+    prefix:"session:",
+    disableTouch:true
+});
 
 //Manejo de sision, express-sesion para usarlo con redis:
 
@@ -36,7 +43,8 @@ redisClient.on('error', (err) => {
 
 //Puerto
 
-const { PORT } = require('./config/variableEntorno.js')
+const { PORT } = require('./config/variableEntorno.js');
+const { enableCompileCache } = require('module');
 
 //configuraciones
 app.set("view engine", "ejs")
