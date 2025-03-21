@@ -31,7 +31,28 @@ async function createDataBase() {
         port: DB_PORT
     })
 
-    await tempConnection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`)
+    if (process.env.NODE_ENV !== "production") {
+        await tempConnection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`)
+        console.log(`Base de Datos ${DB_NAME} creada`);
+    }
+
+    await tempConnection.query(`USE ${DB_NAME}`)
+
+    await tempConnection.query(
+        `CREATE TABLE IF NOT EXISTS usuarios (
+                ide_usu VARCHAR(50) NOT NULL PRIMARY KEY,
+                nom_usu VARCHAR(50) NOT NULL,
+                ape_usu VARCHAR(50) NOT NULL,
+                sex_usu CHAR(1) NOT NULL,
+                fec_nac_usu DATE NOT NULL,
+                tel_usu VARCHAR(15) NOT NULL,
+                dir_usu VARCHAR(100) NOT NULL,
+                cod_barrios1 VARCHAR(50) NOT NULL,
+                mail_usu VARCHAR(100) NOT NULL,
+                pass_usu VARCHAR(255) NOT NULL
+            )`
+    )
+
     console.log(`BD ${DB_NAME} creada`);
     await tempConnection.end()
 }
@@ -40,13 +61,13 @@ createDataBase().then(connectMySQL)
 
 //Configuracion del cliente de Redis:
 
-const redisOption = process.env.NODE_ENV === "production" 
-  ? { 
-      tls: { 
-        rejectUnauthorized: false 
-      } 
-    } 
-  : {};
+const redisOption = process.env.NODE_ENV === "production"
+    ? {
+        tls: {
+            rejectUnauthorized: false
+        }
+    }
+    : {};
 
 //Cliente de Redis
 
@@ -79,7 +100,7 @@ app.use(session({
 
 // Conexxion en Redis:
 redisClient.on("connect", () => {
-    console.log("Conectado a Redis en: ",REDIS_URL);
+    console.log("Conectado a Redis en: ", REDIS_URL);
 })
 
 //Manerjo de errores:
