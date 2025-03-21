@@ -7,7 +7,7 @@ const DB_PASSWORD = process.env.MYSQLPASSWORD || ""
 
 const REDISHOST = process.env.REDISHOST || "127.0.0.1"
 const REDISPORT = process.env.REDISPORT || 6379
-const REDISPASSWORD = process.env.REDISPASSWORD || ''
+const REDISPASSWORD = process.env.REDISPASSWORD || ""
 const REDIS_URL = process.env.REDIS_URL || `redis://:${REDISPASSWORD}@${REDISHOST}:${REDISPORT}`
 
 module.exports = {

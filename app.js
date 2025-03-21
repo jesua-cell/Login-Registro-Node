@@ -9,7 +9,7 @@ const app = express();
 
 //Cliente de Redis
 
-const redisClient = new Redis(REDIS_URL, {
+const redisClient = new Redis(process.env.REDIS_URL, {
     enableCompileCache: false,
     maxRetriesPerRequest: null
 })
